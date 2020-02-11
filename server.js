@@ -4,7 +4,8 @@ var path = require("path");
 var file = require("./db/db.json");
 
 var app = express();
-var PORT = 3000;
+
+const PORT = process.env.PORT || 8080;
 
 var content = JSON.parse(
   fs.readFileSync(path.join(__dirname, "/db/db.json"), (err, data) => {
@@ -65,7 +66,6 @@ app.delete("/api/notes/:id", function(req, res) {
   res.send(content);
 });
 
-app.listen(process.env.PORT || 3000, function() {
-  var port = server.address().port;
-  console.log("App listening on PORT: " + port);
+app.listen(PORT, function() {
+  console.log(`Server listening on: https://localhost:${PORT}`);
 });
